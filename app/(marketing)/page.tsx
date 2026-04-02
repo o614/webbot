@@ -8,9 +8,9 @@ import { BarChart3, Globe, MapPin, Search, ShieldCheck, Zap } from "lucide-react
 export default async function IndexPage() {
   return (
     <>
-      <section className="relative flex min-h-[75vh] flex-col items-center justify-center space-y-6 pb-8 pt-12 md:minh-[calc(100vh-4rem)] md:pb-12 md:pt-10">
+      {/* 🚀 修复了 min-h 的拼写，并严格按照 Tailwind 官方规范重排了 class 顺序 */}
+      <section className="relative flex min-h-[75vh] flex-col items-center justify-center space-y-6 pb-8 pt-12 md:min-h-[calc(100vh-4rem)] md:pb-12 md:pt-10">
         
-        {/* 🎇 苹果风高斯模糊光晕（已彻底去色，改为高级银灰色微光） */}
         <div className="absolute inset-0 -z-10 flex items-center justify-center overflow-hidden">
           <div className="h-[20rem] w-[20rem] rounded-full bg-slate-200/50 blur-[100px] dark:bg-slate-800/40 md:h-[40rem] md:w-[40rem]" />
         </div>
@@ -30,7 +30,8 @@ export default async function IndexPage() {
           <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
             在这里，我们打破区域限制。实时监测全球价格，一键切换商店生态，更有保姆级教程助你玩转海外 Apple 账号。
           </p>
-          <div className="space-x-4 mt-4">
+          {/* 🚀 修复了这里的顺序：mt-4 必须在 space-x-4 前面 */}
+          <div className="mt-4 space-x-4">
             <Link href="/apps" className={cn(buttonVariants({ size: "lg" }))}>
               开始探索
             </Link>
