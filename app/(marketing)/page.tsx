@@ -3,13 +3,11 @@ import Link from "next/link"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
-// 🚀 引入 6 个高级图标来装饰我们的功能卡片
 import { BarChart3, Globe, MapPin, Search, ShieldCheck, Zap } from "lucide-react"
 
 export default async function IndexPage() {
   return (
     <>
-      {/* 第一部分：核心门面 (咱们刚才改的) */}
       <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
           <Link
@@ -40,12 +38,13 @@ export default async function IndexPage() {
         </div>
       </section>
 
-      {/* 🚀 第二部分：六大核心功能矩阵 (填补移动端空白的神器) */}
+      {/* 🚀 修复 2：外层 section 移除 container，让背景横向无限延展 */}
       <section
         id="features"
-        className="container space-y-6 bg-slate-50 py-8 dark:bg-transparent md:py-12 lg:py-24"
+        className="space-y-6 bg-slate-50 py-8 dark:bg-transparent md:py-12 lg:py-24"
       >
-        <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
+        {/* 🚀 内容层加上 container，确保内容始终居中不越界 */}
+        <div className="container mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
           <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">
             六大核心引擎
           </h2>
@@ -54,12 +53,13 @@ export default async function IndexPage() {
           </p>
         </div>
         
-        {/* 卡片网格：手机端单列，平板2列，电脑3列 */}
-        <div className="mx-auto grid justify-center gap-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-3">
+        {/* 卡片网格区也加上 container */}
+        <div className="container mx-auto grid justify-center gap-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-3">
           
           <div className="relative overflow-hidden rounded-lg border bg-background p-2 transition-all hover:shadow-md">
             <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
-              <Search className="h-10 w-10 text-blue-500" />
+              {/* 🚀 修复 1：图标颜色改为 text-foreground（白天黑，夜间白） */}
+              <Search className="h-10 w-10 text-foreground" />
               <div className="space-y-2">
                 <h3 className="font-bold">应用查价</h3>
                 <p className="text-sm text-muted-foreground">一键洞察全球 App 价格，规避高价汇率区。</p>
@@ -69,7 +69,7 @@ export default async function IndexPage() {
 
           <div className="relative overflow-hidden rounded-lg border bg-background p-2 transition-all hover:shadow-md">
             <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
-              <ShieldCheck className="h-10 w-10 text-green-500" />
+              <ShieldCheck className="h-10 w-10 text-foreground" />
               <div className="space-y-2">
                 <h3 className="font-bold">内购透视</h3>
                 <p className="text-sm text-muted-foreground">提前解密隐藏的订阅与内购项目，拒绝流氓扣费。</p>
@@ -79,7 +79,7 @@ export default async function IndexPage() {
 
           <div className="relative overflow-hidden rounded-lg border bg-background p-2 transition-all hover:shadow-md">
             <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
-              <BarChart3 className="h-10 w-10 text-orange-500" />
+              <BarChart3 className="h-10 w-10 text-foreground" />
               <div className="space-y-2">
                 <h3 className="font-bold">实时榜单</h3>
                 <p className="text-sm text-muted-foreground">观测美日韩等核心区排行榜，把握第一手流行趋势。</p>
@@ -89,7 +89,7 @@ export default async function IndexPage() {
 
           <div className="relative overflow-hidden rounded-lg border bg-background p-2 transition-all hover:shadow-md">
             <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
-              <Globe className="h-10 w-10 text-purple-500" />
+              <Globe className="h-10 w-10 text-foreground" />
               <div className="space-y-2">
                 <h3 className="font-bold">极速切区</h3>
                 <p className="text-sm text-muted-foreground">无需手动输入密码，扫码直接跳转目标国家应用商店。</p>
@@ -99,7 +99,7 @@ export default async function IndexPage() {
 
           <div className="relative overflow-hidden rounded-lg border bg-background p-2 transition-all hover:shadow-md">
             <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
-              <MapPin className="h-10 w-10 text-red-500" />
+              <MapPin className="h-10 w-10 text-foreground" />
               <div className="space-y-2">
                 <h3 className="font-bold">免税地址</h3>
                 <p className="text-sm text-muted-foreground">智能生成美区免税州账单地址，内购充值不花冤枉钱。</p>
@@ -109,7 +109,7 @@ export default async function IndexPage() {
 
           <div className="relative overflow-hidden rounded-lg border bg-background p-2 transition-all hover:shadow-md">
             <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
-              <Zap className="h-10 w-10 text-yellow-500" />
+              <Zap className="h-10 w-10 text-foreground" />
               <div className="space-y-2">
                 <h3 className="font-bold">专家服务</h3>
                 <p className="text-sm text-muted-foreground">从纯净 ID 注册到高阶代付解封，一对一专属私人支持。</p>
