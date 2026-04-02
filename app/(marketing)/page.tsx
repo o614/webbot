@@ -7,22 +7,24 @@ import { BarChart3, ChevronDown, Globe, MapPin, Search, ShieldCheck, Zap } from 
 
 export default async function IndexPage() {
   return (
-    <>
-      <section className="relative flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center space-y-6 pb-8 pt-6 md:pb-12 md:pt-10">
+    // 🚀 在最外层包裹一个 overflow-x-hidden，作为终极防线，绝对不允许左右滑动
+    <div className="overflow-x-hidden">
+      
+      {/* 🚀 section 也加上 overflow-hidden，裁剪掉超出的发光背景 */}
+      <section className="relative flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center space-y-6 overflow-hidden pb-8 pt-6 md:pb-12 md:pt-10">
         
-        {/* 🚀 终极杀器：Dub.co 同款高级 64px 大网格 + 径向渐变边缘淡出 */}
         <div 
           className="absolute inset-0 -z-10 h-full w-full"
           style={{
             backgroundImage: "linear-gradient(to right, #8080801a 1px, transparent 1px), linear-gradient(to bottom, #8080801a 1px, transparent 1px)",
             backgroundSize: "64px 64px",
-            // 魔法在这里：让网格四周呈现羽化消失的效果
             maskImage: "radial-gradient(ellipse 60% 60% at 50% 50%, #000 10%, transparent 100%)",
             WebkitMaskImage: "radial-gradient(ellipse 60% 60% at 50% 50%, #000 10%, transparent 100%)"
           }}
         />
-        {/* 配合大网格的极其柔和的中心微光 */}
-        <div className="absolute inset-x-0 top-0 -z-10 m-auto h-[500px] w-[500px] rounded-full bg-foreground opacity-[0.03] blur-[100px]" />
+        
+        {/* 🚀 修复手机端溢出：手机上 300px，平板和电脑上 sm:w-[500px] */}
+        <div className="absolute inset-x-0 top-0 -z-10 m-auto h-[300px] w-[300px] rounded-full bg-foreground opacity-[0.03] blur-[80px] sm:h-[500px] sm:w-[500px] sm:blur-[100px]" />
 
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
           <Link
@@ -32,14 +34,15 @@ export default async function IndexPage() {
           >
             关注公众号 🍎 不要艾特我
           </Link>
-          <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
+          {/* 🚀 优化了手机端标题的行高 (leading-tight) 和边距 */}
+          <h1 className="font-heading text-4xl leading-tight sm:text-5xl md:text-6xl lg:text-7xl">
             全球数字游民的 <br className="hidden sm:block" />
             App Store 观测站
           </h1>
-          <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
+          <p className="max-w-[42rem] px-2 leading-normal text-muted-foreground sm:text-xl sm:leading-8">
             在这里，我们打破区域限制。实时监测全球价格，一键切换商店生态，更有保姆级教程助你玩转海外 Apple 账号。
           </p>
-          <div className="mt-4 space-x-4">
+          <div className="mt-4 flex flex-wrap justify-center gap-4 space-x-0 sm:space-x-4">
             <Link href="/apps" className={cn(buttonVariants({ size: "lg" }))}>
               开始探索
             </Link>
@@ -70,7 +73,7 @@ export default async function IndexPage() {
           </p>
         </div>
         
-        <div className="container mx-auto grid justify-center gap-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-3">
+        <div className="container mx-auto grid justify-center gap-4 px-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-3">
           
           <div className="relative overflow-hidden rounded-lg border bg-background p-2 transition-all hover:shadow-md">
             <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
@@ -134,6 +137,6 @@ export default async function IndexPage() {
 
         </div>
       </section>
-    </>
+    </div>
   )
 }
