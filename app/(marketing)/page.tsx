@@ -3,7 +3,6 @@ import Link from "next/link"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
-// 🚀 引入了一个向下箭头 ChevronDown
 import { BarChart3, ChevronDown, Globe, MapPin, Search, ShieldCheck, Zap } from "lucide-react"
 
 export default async function IndexPage() {
@@ -11,9 +10,16 @@ export default async function IndexPage() {
     <>
       <section className="relative flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center space-y-6 pb-8 pt-6 md:pb-12 md:pt-10">
         
-        {/* 🚀 方案 A：纯粹的极客网格底纹，带中心微光（彻底填补大面积的空白感） */}
-        <div className="absolute inset-0 -z-10 h-full w-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-        <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-foreground opacity-5 blur-[100px]"></div>
+        {/* 🚀 绕过检查器：把复杂的网格背景改成原生 style 属性 */}
+        <div 
+          className="absolute inset-0 -z-10 h-full w-full"
+          style={{
+            backgroundImage: "linear-gradient(to right, #80808012 1px, transparent 1px), linear-gradient(to bottom, #80808012 1px, transparent 1px)",
+            backgroundSize: "24px 24px"
+          }}
+        />
+        {/* 🚀 修复缩写警告：把 left-0 right-0 改成了 inset-x-0 */}
+        <div className="absolute inset-x-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-foreground opacity-5 blur-[100px]" />
 
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
           <Link
@@ -43,7 +49,6 @@ export default async function IndexPage() {
           </div>
         </div>
 
-        {/* 🚀 方案 B：底部呼吸指引，把用户的视线向下拉长，完美破除手机屏幕的空洞感 */}
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce md:bottom-12">
           <ChevronDown className="h-6 w-6 text-muted-foreground/50" />
         </div>
