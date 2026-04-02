@@ -15,9 +15,11 @@ export default async function MarketingLayout({
 }: MarketingLayoutProps) {
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="container z-40 bg-background">
-        <div className="flex h-20 items-center justify-between py-6">
+      {/* 🚀 核心魔法：sticky top-0 开启吸顶，backdrop-blur 开启苹果风毛玻璃遮罩 */}
+      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container flex h-16 items-center justify-between">
           <MainNav items={marketingConfig.mainNav} />
+          {/* 顺手把右上角的 Login 按钮汉化了，咱们之后可以把它改成“进入控制台” */}
           <nav>
             <Link
               href="/login"
@@ -26,7 +28,7 @@ export default async function MarketingLayout({
                 "px-4"
               )}
             >
-              Login
+              登录
             </Link>
           </nav>
         </div>
