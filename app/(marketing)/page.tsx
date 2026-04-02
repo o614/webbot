@@ -3,17 +3,17 @@ import Link from "next/link"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
-import { BarChart3, Globe, MapPin, Search, ShieldCheck, Zap } from "lucide-react"
+// 🚀 引入了一个向下箭头 ChevronDown
+import { BarChart3, ChevronDown, Globe, MapPin, Search, ShieldCheck, Zap } from "lucide-react"
 
 export default async function IndexPage() {
   return (
     <>
-      {/* 🚀 修复了 min-h 的拼写，并严格按照 Tailwind 官方规范重排了 class 顺序 */}
-      <section className="relative flex min-h-[75vh] flex-col items-center justify-center space-y-6 pb-8 pt-12 md:min-h-[calc(100vh-4rem)] md:pb-12 md:pt-10">
+      <section className="relative flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center space-y-6 pb-8 pt-6 md:pb-12 md:pt-10">
         
-        <div className="absolute inset-0 -z-10 flex items-center justify-center overflow-hidden">
-          <div className="h-[20rem] w-[20rem] rounded-full bg-slate-200/50 blur-[100px] dark:bg-slate-800/40 md:h-[40rem] md:w-[40rem]" />
-        </div>
+        {/* 🚀 方案 A：纯粹的极客网格底纹，带中心微光（彻底填补大面积的空白感） */}
+        <div className="absolute inset-0 -z-10 h-full w-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+        <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-foreground opacity-5 blur-[100px]"></div>
 
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
           <Link
@@ -30,7 +30,6 @@ export default async function IndexPage() {
           <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
             在这里，我们打破区域限制。实时监测全球价格，一键切换商店生态，更有保姆级教程助你玩转海外 Apple 账号。
           </p>
-          {/* 🚀 修复了这里的顺序：mt-4 必须在 space-x-4 前面 */}
           <div className="mt-4 space-x-4">
             <Link href="/apps" className={cn(buttonVariants({ size: "lg" }))}>
               开始探索
@@ -43,11 +42,16 @@ export default async function IndexPage() {
             </Link>
           </div>
         </div>
+
+        {/* 🚀 方案 B：底部呼吸指引，把用户的视线向下拉长，完美破除手机屏幕的空洞感 */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce md:bottom-12">
+          <ChevronDown className="h-6 w-6 text-muted-foreground/50" />
+        </div>
       </section>
 
       <section
         id="features"
-        className="flex flex-col items-center justify-center space-y-6 bg-slate-50 py-16 dark:bg-transparent md:min-h-screen md:py-12"
+        className="flex min-h-screen flex-col items-center justify-center space-y-6 bg-slate-50 py-16 dark:bg-transparent md:py-12"
       >
         <div className="container mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
           <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">
