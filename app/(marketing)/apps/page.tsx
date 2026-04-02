@@ -48,78 +48,81 @@ export default function AppsPage() {
       <hr className="my-12 border-muted" />
 
       {/* 3. 搜索结果展示区 */}
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-6 sm:gap-8">
         
-        {/* 🚀 移动端优化：手机上上下堆叠居中，平板上左右并排排列 */}
-        <div className="flex flex-col items-center gap-4 rounded-lg border bg-card p-6 text-center shadow-sm sm:flex-row sm:items-start sm:gap-6 sm:text-left">
-          <div className="h-24 w-24 shrink-0 rounded-[22px] border bg-muted/50 shadow-sm">
+        {/* 🚀 优化 1：小巧紧凑的应用信息卡片，彻底摒弃上下堆叠，移动端强制左右排版 */}
+        <div className="flex items-center gap-4 rounded-lg border bg-card p-4 shadow-sm sm:gap-6 sm:p-6">
+          {/* 图标在手机上缩小到 64x64，电脑上 80x80 */}
+          <div className="h-16 w-16 shrink-0 rounded-2xl border bg-muted/50 shadow-sm sm:h-20 sm:w-20 sm:rounded-[22px]">
             {/* 图标占位 */}
           </div>
-          <div className="flex flex-col gap-2">
-            <h2 className="text-2xl font-bold">Shadowrocket</h2>
-            {/* 修复文字过长导致手机端折行的问题 */}
-            <div className="flex flex-wrap items-center justify-center gap-2 text-sm text-muted-foreground sm:justify-start">
-              <span>Shadow Launch Technology Limited</span>
-              <span className="hidden sm:inline">•</span>
-              <span className="rounded-md bg-muted px-2 py-0.5 sm:bg-transparent sm:p-0">工具</span>
+          <div className="flex flex-col gap-1 sm:gap-1.5">
+            <h2 className="text-lg font-bold sm:text-2xl">Shadowrocket</h2>
+            <div className="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground sm:text-sm">
+              <span className="max-w-[140px] truncate sm:max-w-none">Shadow Launch Technology Limited</span>
+              <span>•</span>
+              <span>工具</span>
             </div>
-            <div className="mt-1 flex items-center justify-center gap-1 text-sm font-medium sm:justify-start">
+            <div className="flex items-center gap-1 text-xs font-medium sm:text-sm">
               <span className="text-yellow-500">★★★★★</span>
-              <span className="ml-1 text-muted-foreground">4.9 (1.2w 评分)</span>
+              <span className="text-muted-foreground">4.9 (1.2w)</span>
             </div>
           </div>
         </div>
 
-        {/* 🚀 移动端优化：给表格外层包了 overflow-x-auto，并给 table 加了 whitespace-nowrap（强制不换行） */}
-        <div className="w-full overflow-x-auto rounded-md border shadow-sm">
-          <table className="w-full whitespace-nowrap text-left text-sm">
-            <thead className="border-b bg-muted/50 text-muted-foreground">
-              <tr>
-                <th className="h-12 px-4 align-middle font-medium">国家/地区</th>
-                <th className="h-12 px-4 align-middle font-medium">当地价格</th>
-                <th className="h-12 px-4 align-middle font-medium">折合人民币</th>
-                <th className="h-12 px-4 align-middle text-right font-medium">操作</th>
-              </tr>
-            </thead>
-            <tbody className="[&_tr:last-child]:border-0">
-              <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                <td className="flex items-center gap-2 p-4 align-middle font-medium">
-                  <span>🇹🇷</span> 土耳其 (TR)
-                </td>
-                <td className="p-4 align-middle">TRY 19.99</td>
-                <td className="p-4 align-middle font-bold text-green-600">¥ 4.85</td>
-                <td className="p-4 align-middle text-right">
-                  <button className={cn(buttonVariants({ variant: "outline", size: "sm" }))}>
-                    前往
-                  </button>
-                </td>
-              </tr>
-              <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                <td className="flex items-center gap-2 p-4 align-middle font-medium">
-                  <span>🇨🇳</span> 中国大陆 (CN)
-                </td>
-                <td className="p-4 align-middle">CNY 18.00</td>
-                <td className="p-4 align-middle font-bold">¥ 18.00</td>
-                <td className="p-4 align-middle text-right">
-                  <button className={cn(buttonVariants({ variant: "outline", size: "sm" }))}>
-                    前往
-                  </button>
-                </td>
-              </tr>
-              <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                <td className="flex items-center gap-2 p-4 align-middle font-medium">
-                  <span>🇺🇸</span> 美国 (US)
-                </td>
-                <td className="p-4 align-middle">USD 2.99</td>
-                <td className="p-4 align-middle font-bold text-red-500">¥ 21.50</td>
-                <td className="p-4 align-middle text-right">
-                  <button className={cn(buttonVariants({ variant: "outline", size: "sm" }))}>
-                    前往
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        {/* 🚀 优化 2：纯正 Radix / Shadcn 风格的高级数据表格 */}
+        <div className="rounded-md border">
+          <div className="w-full overflow-auto">
+            <table className="w-full caption-bottom text-sm">
+              <thead className="[&_tr]:border-b bg-muted/50">
+                <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                  <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">国家/地区</th>
+                  <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">当地价格</th>
+                  <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">折合人民币</th>
+                  <th className="h-12 px-4 text-right align-middle font-medium text-muted-foreground">操作</th>
+                </tr>
+              </thead>
+              <tbody className="[&_tr:last-child]:border-0">
+                <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                  <td className="whitespace-nowrap p-4 align-middle font-medium flex items-center gap-2">
+                    <span className="text-lg">🇹🇷</span> 土耳其 (TR)
+                  </td>
+                  <td className="whitespace-nowrap p-4 align-middle text-muted-foreground">TRY 19.99</td>
+                  <td className="whitespace-nowrap p-4 align-middle font-bold text-green-600">¥ 4.85</td>
+                  <td className="whitespace-nowrap p-4 align-middle text-right">
+                    {/* Radix 经典的幽灵按钮 (ghost) */}
+                    <button className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "h-8 px-3 text-xs")}>
+                      前往
+                    </button>
+                  </td>
+                </tr>
+                <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                  <td className="whitespace-nowrap p-4 align-middle font-medium flex items-center gap-2">
+                    <span className="text-lg">🇨🇳</span> 中国大陆 (CN)
+                  </td>
+                  <td className="whitespace-nowrap p-4 align-middle text-muted-foreground">CNY 18.00</td>
+                  <td className="whitespace-nowrap p-4 align-middle font-bold">¥ 18.00</td>
+                  <td className="whitespace-nowrap p-4 align-middle text-right">
+                    <button className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "h-8 px-3 text-xs")}>
+                      前往
+                    </button>
+                  </td>
+                </tr>
+                <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                  <td className="whitespace-nowrap p-4 align-middle font-medium flex items-center gap-2">
+                    <span className="text-lg">🇺🇸</span> 美国 (US)
+                  </td>
+                  <td className="whitespace-nowrap p-4 align-middle text-muted-foreground">USD 2.99</td>
+                  <td className="whitespace-nowrap p-4 align-middle font-bold text-red-500">¥ 21.50</td>
+                  <td className="whitespace-nowrap p-4 align-middle text-right">
+                    <button className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "h-8 px-3 text-xs")}>
+                      前往
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
       </div>
