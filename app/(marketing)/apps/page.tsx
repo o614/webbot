@@ -2,16 +2,7 @@
 import { Search } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
-
-// 🚀 核心：这次绝对不自己捏了！直接调用 Taxonomy 模板自带的高级表格组件！
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
+import Link from "next/link"
 
 export const metadata = {
   title: "应用查价",
@@ -76,56 +67,58 @@ export default function AppsPage() {
           </div>
         </div>
 
-        {/* 🚀 真正的高级感：直接调用模板的原生 Table 组件 */}
+        {/* 🚀 核心救场方案：剥壳版 Shadcn Table！不用引入任何不存在的组件，纯 HTML 1:1 像素级复刻 */}
         <div className="rounded-md border shadow-sm">
-          <Table>
-            <TableHeader className="bg-muted/50">
-              <TableRow>
-                <TableHead className="w-[120px] sm:w-[150px]">国家/地区</TableHead>
-                <TableHead>当地价格</TableHead>
-                <TableHead>折合人民币</TableHead>
-                <TableHead className="text-right">操作</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              <TableRow>
-                <TableCell className="font-medium flex items-center gap-2">
-                  <span className="text-lg">🇹🇷</span> <span className="hidden sm:inline">土耳其 (TR)</span><span className="sm:hidden">TR</span>
-                </TableCell>
-                <TableCell className="text-muted-foreground">TRY 19.99</TableCell>
-                <TableCell className="font-bold text-green-600">¥ 4.85</TableCell>
-                <TableCell className="text-right">
-                  <button className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "h-8 px-2 sm:px-3 text-xs")}>
-                    前往
-                  </button>
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell className="font-medium flex items-center gap-2">
-                  <span className="text-lg">🇨🇳</span> <span className="hidden sm:inline">中国大陆 (CN)</span><span className="sm:hidden">CN</span>
-                </TableCell>
-                <TableCell className="text-muted-foreground">CNY 18.00</TableCell>
-                <TableCell className="font-bold">¥ 18.00</TableCell>
-                <TableCell className="text-right">
-                  <button className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "h-8 px-2 sm:px-3 text-xs")}>
-                    前往
-                  </button>
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell className="font-medium flex items-center gap-2">
-                  <span className="text-lg">🇺🇸</span> <span className="hidden sm:inline">美国 (US)</span><span className="sm:hidden">US</span>
-                </TableCell>
-                <TableCell className="text-muted-foreground">USD 2.99</TableCell>
-                <TableCell className="font-bold text-red-500">¥ 21.50</TableCell>
-                <TableCell className="text-right">
-                  <button className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "h-8 px-2 sm:px-3 text-xs")}>
-                    前往
-                  </button>
-                </TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
+          <div className="relative w-full overflow-auto">
+            <table className="w-full caption-bottom text-sm">
+              <thead className="[&_tr]:border-b bg-muted/50">
+                <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                  <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground w-[120px] sm:w-[150px] whitespace-nowrap">国家/地区</th>
+                  <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground whitespace-nowrap">当地价格</th>
+                  <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground whitespace-nowrap">折合人民币</th>
+                  <th className="h-12 px-4 text-right align-middle font-medium text-muted-foreground whitespace-nowrap">操作</th>
+                </tr>
+              </thead>
+              <tbody className="[&_tr:last-child]:border-0">
+                <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                  <td className="p-4 align-middle flex items-center gap-2 font-medium whitespace-nowrap">
+                    <span className="text-lg">🇹🇷</span> <span className="hidden sm:inline">土耳其 (TR)</span><span className="sm:hidden">TR</span>
+                  </td>
+                  <td className="p-4 align-middle text-muted-foreground whitespace-nowrap">TRY 19.99</td>
+                  <td className="p-4 align-middle font-bold text-green-600 whitespace-nowrap">¥ 4.85</td>
+                  <td className="p-4 align-middle text-right whitespace-nowrap">
+                    <button className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "h-8 px-2 sm:px-3 text-xs")}>
+                      前往
+                    </button>
+                  </td>
+                </tr>
+                <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                  <td className="p-4 align-middle flex items-center gap-2 font-medium whitespace-nowrap">
+                    <span className="text-lg">🇨🇳</span> <span className="hidden sm:inline">中国大陆 (CN)</span><span className="sm:hidden">CN</span>
+                  </td>
+                  <td className="p-4 align-middle text-muted-foreground whitespace-nowrap">CNY 18.00</td>
+                  <td className="p-4 align-middle font-bold whitespace-nowrap">¥ 18.00</td>
+                  <td className="p-4 align-middle text-right whitespace-nowrap">
+                    <button className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "h-8 px-2 sm:px-3 text-xs")}>
+                      前往
+                    </button>
+                  </td>
+                </tr>
+                <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                  <td className="p-4 align-middle flex items-center gap-2 font-medium whitespace-nowrap">
+                    <span className="text-lg">🇺🇸</span> <span className="hidden sm:inline">美国 (US)</span><span className="sm:hidden">US</span>
+                  </td>
+                  <td className="p-4 align-middle text-muted-foreground whitespace-nowrap">USD 2.99</td>
+                  <td className="p-4 align-middle font-bold text-red-500 whitespace-nowrap">¥ 21.50</td>
+                  <td className="p-4 align-middle text-right whitespace-nowrap">
+                    <button className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "h-8 px-2 sm:px-3 text-xs")}>
+                      前往
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
       </div>
