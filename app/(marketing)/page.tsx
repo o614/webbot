@@ -3,15 +3,14 @@ import Link from "next/link"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
-// 🚀 删除了 ChevronDown 箭头图标
 import { BarChart3, Globe, MapPin, Search, ShieldCheck, Zap } from "lucide-react"
 
 export default async function IndexPage() {
   return (
     <div className="overflow-x-hidden">
       
-      {/* 🚀 手机端改为 pt-24 pb-16 自然高度，不再强制占据全屏；电脑端保持 md:min-h-[calc(100vh-4rem)] */}
-      <section className="relative flex flex-col items-center justify-center space-y-6 overflow-hidden pt-24 pb-16 md:min-h-[calc(100vh-4rem)] md:pb-24 md:pt-32">
+      {/* 🚀 修复了 ESLint 报错：严格重新排列了 pt, pb 和 md: 响应式类名的顺序 */}
+      <section className="relative flex flex-col items-center justify-center space-y-6 overflow-hidden pb-16 pt-24 md:min-h-[calc(100vh-4rem)] md:pb-24 md:pt-32">
         
         <div 
           className="absolute inset-0 -z-10 h-full w-full"
@@ -52,10 +51,8 @@ export default async function IndexPage() {
             </Link>
           </div>
         </div>
-        {/* 🚀 删除了底部的跳动向下箭头 */}
       </section>
 
-      {/* 🚀 删除了 min-h-screen，改为自然的 py-16，让它在手机上紧凑连接 */}
       <section
         id="features"
         className="flex flex-col items-center justify-center space-y-6 bg-slate-50 py-16 dark:bg-transparent md:py-24"
