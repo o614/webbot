@@ -3,15 +3,15 @@ import Link from "next/link"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
-import { BarChart3, ChevronDown, Globe, MapPin, Search, ShieldCheck, Zap } from "lucide-react"
+// 🚀 删除了 ChevronDown 箭头图标
+import { BarChart3, Globe, MapPin, Search, ShieldCheck, Zap } from "lucide-react"
 
 export default async function IndexPage() {
   return (
-    // 🚀 在最外层包裹一个 overflow-x-hidden，作为终极防线，绝对不允许左右滑动
     <div className="overflow-x-hidden">
       
-      {/* 🚀 section 也加上 overflow-hidden，裁剪掉超出的发光背景 */}
-      <section className="relative flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center space-y-6 overflow-hidden pb-8 pt-6 md:pb-12 md:pt-10">
+      {/* 🚀 手机端改为 pt-24 pb-16 自然高度，不再强制占据全屏；电脑端保持 md:min-h-[calc(100vh-4rem)] */}
+      <section className="relative flex flex-col items-center justify-center space-y-6 overflow-hidden pt-24 pb-16 md:min-h-[calc(100vh-4rem)] md:pb-24 md:pt-32">
         
         <div 
           className="absolute inset-0 -z-10 h-full w-full"
@@ -23,7 +23,6 @@ export default async function IndexPage() {
           }}
         />
         
-        {/* 🚀 修复手机端溢出：手机上 300px，平板和电脑上 sm:w-[500px] */}
         <div className="absolute inset-x-0 top-0 -z-10 m-auto h-[300px] w-[300px] rounded-full bg-foreground opacity-[0.03] blur-[80px] sm:h-[500px] sm:w-[500px] sm:blur-[100px]" />
 
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
@@ -34,7 +33,6 @@ export default async function IndexPage() {
           >
             关注公众号 🍎 不要艾特我
           </Link>
-          {/* 🚀 优化了手机端标题的行高 (leading-tight) 和边距 */}
           <h1 className="font-heading text-4xl leading-tight sm:text-5xl md:text-6xl lg:text-7xl">
             全球数字游民的 <br className="hidden sm:block" />
             App Store 观测站
@@ -54,15 +52,13 @@ export default async function IndexPage() {
             </Link>
           </div>
         </div>
-
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce md:bottom-12">
-          <ChevronDown className="h-6 w-6 text-muted-foreground/50" />
-        </div>
+        {/* 🚀 删除了底部的跳动向下箭头 */}
       </section>
 
+      {/* 🚀 删除了 min-h-screen，改为自然的 py-16，让它在手机上紧凑连接 */}
       <section
         id="features"
-        className="flex min-h-screen flex-col items-center justify-center space-y-6 bg-slate-50 py-16 dark:bg-transparent md:py-12"
+        className="flex flex-col items-center justify-center space-y-6 bg-slate-50 py-16 dark:bg-transparent md:py-24"
       >
         <div className="container mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
           <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">
