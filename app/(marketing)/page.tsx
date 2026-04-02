@@ -8,7 +8,8 @@ import { BarChart3, Globe, MapPin, Search, ShieldCheck, Zap } from "lucide-react
 export default async function IndexPage() {
   return (
     <>
-      <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
+      {/* 🚀 第一屏：减去导航栏高度，内容绝对垂直居中 */}
+      <section className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center space-y-6 pb-8 pt-6 md:pb-12 md:pt-10">
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
           <Link
             href={siteConfig.links.github}
@@ -38,12 +39,11 @@ export default async function IndexPage() {
         </div>
       </section>
 
-      {/* 🚀 修复 2：外层 section 移除 container，让背景横向无限延展 */}
+      {/* 🚀 第二屏：最小高度 100vh，内容绝对垂直居中 */}
       <section
         id="features"
-        className="space-y-6 bg-slate-50 py-8 dark:bg-transparent md:py-12 lg:py-24"
+        className="flex min-h-screen flex-col items-center justify-center space-y-6 bg-slate-50 py-8 dark:bg-transparent md:py-12"
       >
-        {/* 🚀 内容层加上 container，确保内容始终居中不越界 */}
         <div className="container mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
           <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">
             六大核心引擎
@@ -53,12 +53,10 @@ export default async function IndexPage() {
           </p>
         </div>
         
-        {/* 卡片网格区也加上 container */}
         <div className="container mx-auto grid justify-center gap-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-3">
           
           <div className="relative overflow-hidden rounded-lg border bg-background p-2 transition-all hover:shadow-md">
             <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
-              {/* 🚀 修复 1：图标颜色改为 text-foreground（白天黑，夜间白） */}
               <Search className="h-10 w-10 text-foreground" />
               <div className="space-y-2">
                 <h3 className="font-bold">应用查价</h3>
