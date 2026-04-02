@@ -10,16 +10,19 @@ export default async function IndexPage() {
     <>
       <section className="relative flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center space-y-6 pb-8 pt-6 md:pb-12 md:pt-10">
         
-        {/* 🚀 绕过检查器：把复杂的网格背景改成原生 style 属性 */}
+        {/* 🚀 终极杀器：Dub.co 同款高级 64px 大网格 + 径向渐变边缘淡出 */}
         <div 
           className="absolute inset-0 -z-10 h-full w-full"
           style={{
-            backgroundImage: "linear-gradient(to right, #80808012 1px, transparent 1px), linear-gradient(to bottom, #80808012 1px, transparent 1px)",
-            backgroundSize: "24px 24px"
+            backgroundImage: "linear-gradient(to right, #8080801a 1px, transparent 1px), linear-gradient(to bottom, #8080801a 1px, transparent 1px)",
+            backgroundSize: "64px 64px",
+            // 魔法在这里：让网格四周呈现羽化消失的效果
+            maskImage: "radial-gradient(ellipse 60% 60% at 50% 50%, #000 10%, transparent 100%)",
+            WebkitMaskImage: "radial-gradient(ellipse 60% 60% at 50% 50%, #000 10%, transparent 100%)"
           }}
         />
-        {/* 🚀 修复缩写警告：把 left-0 right-0 改成了 inset-x-0 */}
-        <div className="absolute inset-x-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-foreground opacity-5 blur-[100px]" />
+        {/* 配合大网格的极其柔和的中心微光 */}
+        <div className="absolute inset-x-0 top-0 -z-10 m-auto h-[500px] w-[500px] rounded-full bg-foreground opacity-[0.03] blur-[100px]" />
 
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
           <Link
